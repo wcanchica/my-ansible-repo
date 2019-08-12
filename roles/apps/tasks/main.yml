@@ -1,0 +1,27 @@
+---
+- name: install tomcat
+  package:
+    name: tomcat
+    state: latest
+
+- name: enable tomcat at boot
+  service:
+    name: tomcat
+    enabled: yes
+
+- name: create ansible tomcat directory
+  file:
+    path: /usr/share/tomcat/webapps/ROOT
+    state: directory
+
+- name: Write index.html to tomcat webapps/ROOT/index.html
+  template:
+    src: index.html.j2
+    dest: /usr/share/tomcat/webapps/ROOT/index.html
+    mode: u=rw,go=r
+
+- name: start and enable tomcat
+  service:
+    name: tomcat
+    state: started
+    enabled: yes
