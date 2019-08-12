@@ -1,0 +1,7 @@
+---
+dynamic_ssh_config_mode: direct
+dynamic_ssh_config_path: ssh.cfg
+dynamic_ssh_config_user: ec2-user
+dynamic_ssh_config_keyfile: ~/.ssh/{{ lookup('env', 'GUID') }}.pem
+dynamic_ssh_config_proxyjump_hostname: bastion.{{ lookup('env', 'GUID') }}.example.opentlc.com
+dynamic_ssh_config_proxyjump_user: "{{ lookup('env', 'USER') }}"

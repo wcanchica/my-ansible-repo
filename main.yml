@@ -13,6 +13,14 @@
 #   Bare variables
 #   No use of handlers
 
+- name: ssh config
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  become: false
+  roles:
+  - dynamic_ssh_config
+
 - name: configuration
   hosts: all
   gather_facts: false # remove later! speeds up testing

@@ -1,0 +1,9 @@
+Host *.internal 
+  User {{ dynamic_ssh_config_user }}
+  StrictHostKeyChecking no
+  ControlMaster auto
+  ControlPath /tmp/%h-%r
+  ControlPersist 5m
+
+Match User {{ dynamic_ssh_config_user }}
+  IdentityFile {{ dynamic_ssh_config_keyfile }}

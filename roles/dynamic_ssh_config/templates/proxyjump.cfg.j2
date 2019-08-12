@@ -1,10 +1,10 @@
 Host bastion
-  Hostname bastion.6400.example.opentlc.com
-  User ankay-redhat.com
+  Hostname {{ dynamic_ssh_config_proxyjump_hostname }}
+  User {{ dynamic_ssh_config_proxyjump_user }}
   ForwardAgent yes
 
 Host *.internal
-  User ec2-user
+  User {{ dynamic_ssh_config_user }}
   ProxyJump bastion
 
 Host *
@@ -17,6 +17,5 @@ Match User ankay-redhat.com
   IdentityFile ~/.ssh/id_rsa
 # or where you put your ssh key
 
-Match User ec2-user
-  IdentityFile ./<CHANGE_GUID>key.pem
-# or where you put ec2-user's ssh key
+Match User {{ dynamic_ssh_config_user }}
+  IdentityFile {{ dynamic_ssh_config_keyfile }}

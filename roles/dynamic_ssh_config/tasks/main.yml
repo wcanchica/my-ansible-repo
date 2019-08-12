@@ -1,0 +1,8 @@
+---
+- name: Configure for bastion access
+  include_tasks: direct.yml
+  when: dynamic_ssh_config_mode == 'direct'
+
+- name: Configure for bastion access
+  include_tasks: proxyjump.yml
+  when: dynamic_ssh_config_mode == 'proxyjump'
