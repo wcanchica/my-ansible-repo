@@ -1,0 +1,3 @@
+---
+# haproxy should be fixed to a specific version for release
+frontends_haproxy_version: latest

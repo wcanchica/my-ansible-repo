@@ -1,6 +1,6 @@
 global
-  log /dev/log  local0
-  log /dev/log  local1 notice
+  log /dev/log local0
+  log /dev/log local1 notice
   stats socket /var/lib/haproxy/stats level admin
   chroot /var/lib/haproxy
   user haproxy
@@ -25,5 +25,6 @@ backend app-servers
     mode http
     balance roundrobin
     option forwardfor
-    server app1 app1.{{GUID}}.internal:8080 cookie app1 check
-    server app2 app2.{{GUID}}.internal:8080 cookie app2 check
+{% for appsrv in groups.apps %}
+    server {{ appsrv }} {{ hostvars[appsrv].ansible_host }}:8080 cookie {{ appsrv }} check
+{% endfor %}
