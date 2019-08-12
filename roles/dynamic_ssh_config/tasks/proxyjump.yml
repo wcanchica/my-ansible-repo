@@ -1,0 +1,6 @@
+---
+- name: Write proxyjump ssh.cfg
+  template:
+    src: proxyjump.cfg.j2
+    dest: "{{ dynamic_ssh_config_path }}"
+    mode: u=rw,go=
